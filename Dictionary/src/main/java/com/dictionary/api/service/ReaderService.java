@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.util.SortedSet;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,5 +49,8 @@ public class ReaderService {
 	public boolean searchFile(String word) {
 		
 		return dictionary.contains(word);
+	}
+	public void pagination(String title,int rows) {
+	dictionary.parallelStream().filter(predicate->predicate.equalsIgnoreCase(title)).collect(Collectors.toList());
 	}
 }
